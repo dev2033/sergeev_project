@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="slider">
+    <div class="callbacks_container">
+        <ul class="rslides" id="slider">
+            <li>
+                <img src="{% static 'images/1.jpg' %}" alt=""/>
+                <div class="caption">
+                    <h2>Aliquam vitae faucibus ipsum Nullam facilisis ornare
+                        diam sed malesuad</h2>
+                </div>
+            </li>
+            <li>
+                <img src="{% static 'images/2.jpg' %}" alt=""/>
+                <div class="caption">
+                    <h2>Aliquam vitae faucibus ipsum Nullam facilisis ornare
+                        diam sed malesuad</h2>
+                </div>
+            </li>
+            <li>
+                <img src="{% static 'images/3.jpg' %}" alt=""/>
+                <div class="caption">
+                    <h2>Aliquam vitae faucibus ipsum Nullam facilisis ornare
+                        diam sed malesuad</h2>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="content">
+    <div class="container">
+        <div class="about-section">
+            <div class="about-section-top text-center">
+                <h3>О нас</h3>
+                {% for item in info %}
+                    <p>{{ item.content|safe  }}</p>
+                {% endfor %}
+
+            </div>
+            <br> <br><br>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!----->
+    <div class="slider1">
+        <div class="callbacks_container">
+            <ul class="rslides" id="slider1">
+                <li>
+                    <img src="{% static 'images/side-1.jpg' %}" alt=""/>
+                    <div class="caption caption1">
+                        <h2>Последнии новости</h2>
+                    </div>
+                </li>
+                <li>
+                    <img src="{% static 'images/side-2.jpg' %}" alt=""/>
+                    <div class="caption caption1">
+                        <h2>Последнии новости</h2>
+                    </div>
+                </li>
+                <li>
+                    <img src="{% static 'images/side-3.jpg' %}" alt=""/>
+                    <div class="caption caption1">
+                        <h2>Последнии новости</h2>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <script>
+		$(function () {
+		  $("#slider1").responsiveSlides({
+			auto: true,
+			speed: 500,
+			namespace: "callbacks",
+			pager: true,
+		  });
+		});
+
+    </script>
+    <!----->
+    <div class="service-section">
+        <div class="container">
+            <div class="service-section-grids">
+                {% for post in posts %}
+                    <div class="col-md-4 service-section-grid-2">
+                        <h3>{{ post.title }}</h3>
+                        <img src="{{ post.image.url }}" alt="" width="320" height="320"/>
+                        <p>{{ post.content|truncatewords_html:20|safe }}</p>
+                        <a class="btn btn-1 btn-1c" href="{{ post.get_absolute_url }}">Читать</a>
+                        <hr>
+                        <hr>
+                    </div>
+                {% endfor %}
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

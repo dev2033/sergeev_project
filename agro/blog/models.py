@@ -5,14 +5,9 @@ from django.urls import reverse
 
 class Post(models.Model):
     """Пост"""
-    tags = models.ManyToManyField(
-        'Tag',
-        related_name='posts',
-        verbose_name='Теги'
-    )
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                verbose_name='Автор')
-    title = models.CharField("Название поста", max_length=100)
+    title = models.CharField("Название поста", max_length=300)
     slug = models.SlugField('Url', max_length=255, unique=True)
     content = models.TextField('Контент', blank=True)
     image = models.ImageField("Изображение", upload_to='posts/', blank=True,
@@ -34,17 +29,14 @@ class Post(models.Model):
         ordering = ['-created_at']
 
 
-class Tag(models.Model):
-    title = models.CharField('Тег', max_length=50)
-    slug = models.SlugField('Url', max_length=50, unique=True)
+class About(models.Model):
+    """О нас"""
+    title = models.CharField('Название', max_length=200)
+    content = models.TextField('Контент')
 
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse('tag', kwargs={'slug': self.slug})
-
     class Meta:
-        verbose_name = 'Тег'
-        verbose_name_plural = 'Теги'
-        ordering = ['title']
+        verbose_name = 'О нас'
+        verbose_name_plural = 'О нас'

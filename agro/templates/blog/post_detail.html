@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="about-content">
+    <div class="container">
+        <div class="details">
+        <br><br>
+            <h2 class="style">{{ post.title }}</h2>
+            <div class="det_pic img_style">
+                <img src="{{ post.image.url }}" alt="">
+            </div>
+            <div class="det-para">
+                <p class="top para">{{ post.content|safe }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

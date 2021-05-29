@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="about-content">
+    <div class="container">
+        <div class="product-section">
+            <div class="product-section-top">
+            <br><br><br>
+                <h3>Новости</h3>
+                <br>
+               <div class="content">
+                <div class="container row">
+                    {% for post in posts %}
+                       
+                        <div class="card" style="width: 40rem;height: 42rem;">
+                          <img src="{{ post.image.url }}" class="card-img-top">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ post.title|truncatewords_html:7|safe }}</h5>
+                            <p class="card-text">{{ post.content|truncatewords_html:20|safe }}</p>
+                            <div class="d-grid gap-2">
+                              <a href="{{ post.get_absolute_url }}" class="btn btn-outline-success">Читать</a>
+                            </div>
+                            
+                          </div>
+                        </div>
+						<br>
+                    {% endfor %}
+                    <br>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock content %}
