@@ -10,11 +10,11 @@
             <br><br><br>
                 <h3>Новости</h3>
                 <br>
-               <div class="content">
+               <div class="content container text-center">
+                   <br>
                 <div class="container row">
                     {% for post in posts %}
-                       
-                        <div class="card" style="width: 40rem;height: 42rem;">
+                        <div class="card" style="width: 32rem;height: 40rem;">
                           <img src="{{ post.image.url }}" class="card-img-top">
                           <div class="card-body">
                             <h5 class="card-title">{{ post.title|truncatewords_html:7|safe }}</h5>
@@ -22,18 +22,39 @@
                             <div class="d-grid gap-2">
                               <a href="{{ post.get_absolute_url }}" class="btn btn-outline-success">Читать</a>
                             </div>
-                            
                           </div>
                         </div>
 						<br>
                     {% endfor %}
                     <br>
+
                     <div class="clearfix"> </div>
+
                 </div>
             </div>
             </div>
         </div>
     </div>
 </div>
+<br>
+{% if page_obj.has_other_pages %}
+    <div class="text-center more-btn__box">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-success">Назад</a>
+        {% endif %}
+
+        {% for p in page_obj.paginator.page_range %}
+            {% if page_obj.number == p %}
+                <a class="btn btn-outline-success" href="">{{ p }}</a>
+            {% elif p > page_obj.number|add:-3 and  p < page_obj.number|add:3 %}
+                <a href="?page={{ p }}" class="btn btn-outline-success">{{ p }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-success">Вперед</a>
+        {% endif %}
+    </div>
+{% endif %}
 <br>
 {% endblock content %}

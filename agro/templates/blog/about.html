@@ -8,6 +8,7 @@
     <div class="container">
         <div class="about-section">
             <div class="about-section-top text-center">
+                <br><br>
                 <h3>О нас</h3>
                 {% for item in info %}
                     <p>{{ item.content|safe  }}</p>
@@ -61,12 +62,12 @@
             <div class="service-section-grids">
                 {% for post in posts %}
                     <div class="col-md-4 service-section-grid-2">
-                        <h3>{{ post.title }}</h3>
+                        <h3>{{ post.title|truncatewords_html:5|safe }}</h3>
                         <img src="{{ post.image.url }}" alt="" width="320" height="320"/>
                         <p>{{ post.content|truncatewords_html:20|safe }}</p>
                         <a class="btn btn-1 btn-1c" href="{{ post.get_absolute_url }}">Читать</a>
                         <hr>
-                        <hr>
+
                     </div>
                 {% endfor %}
                 <div class="clearfix"></div>

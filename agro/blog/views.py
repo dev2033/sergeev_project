@@ -8,7 +8,7 @@ class HomeView(View):
     """Главная страница"""
     def get(self, request, *args, **kwargs):
         info = About.objects.order_by('-id')
-        posts = Post.objects.order_by('-id')[:6]
+        posts = Post.objects.order_by('-id')[:3]
         context = {
             'info': info,
             'posts': posts
@@ -36,7 +36,7 @@ class AboutAsView(View):
     """Вывод информации на странице 'О нас'"""
     def get(self, request, *args, **kwargs):
         info = About.objects.order_by('-id')
-        posts = Post.objects.order_by('-id')[:6]
+        posts = Post.objects.order_by('-id')[:3]
         context = {
             'info': info,
             'posts': posts
